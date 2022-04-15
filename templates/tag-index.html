@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block TITLE %}List of Tags{% endblock TITLE %}
+{% block PAGETITLE %}List of Tags{% endblock PAGETITLE %}
+
+{% block PAGECONTENT %}
+    <table>
+        <thead>
+            <tr>
+                <th>Tag</th>
+                <th>No of Posts</th>
+                <th>Most Recent Post</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for t in tags %}
+                <tr>
+                    <td>
+                        <a href="{{ t[0] }}.html">{{ t[0] }}</a>
+                    </td>
+                    <td>{{ t[1] }}</td>
+                    <td>
+                        <a href="/posts/{{ t[2] }}.html">{{ t[3] }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock PAGECONTENT %}

@@ -4,16 +4,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>
-    Mostly Oxygen
-    
-</title>
+        <title>{% block TITLE %}Mostly Oxygen{% endblock TITLE %}</title>
         <link rel="stylesheet" href="/styles/simple.css">
         <link rel="stylesheet" href="/styles/pygments.css">
         <style>
-            
-    .pagination { margin-top: 3.0em; text-align: center; }
-
+            {% block STYLES %}{% endblock STYLES %}
         </style>
     </head>
 
@@ -24,36 +19,14 @@
                 <a href="/tags/">Tags</a>
                 <a href="https://github.com/mostlyoxygen">Github</a>
             </nav>
-            <h1>
-    Mostly Oxygen
-    
-</h1>
-            
+            <h1>{% block PAGETITLE %}Mostly Oxygen{% endblock PAGETITLE %}</h1>
+            {% block ADDITIONAL_HEADER %}{% endblock ADDITIONAL_HEADER %}
         </header>
         <main>
-            
-    
-        <section>
-            <h2>Hello World</h2>
-            <p>Lorem ipsum and all</p>
-            <p>
-                <a href="/posts/helloworld.html">
-                    Read more
-                </a>
-            </p>
-            <p><small>
-                Tags:
-                
-                    <a href="/tags/test.html">test</a>
-                
-            </small></p>
-        </section>
-    
-    
-
+            {% block PAGECONTENT %}{% endblock PAGECONTENT %}
         </main>
         <footer>
-            
+            {% block FOOTER %}{% endblock FOOTER %}
             <section>
                 <small>
                     Except where otherwise noted, content on this site

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block TITLE %}{{ title }}{% endblock TITLE %}
+
+{% block STYLES %}
+    .next-previous { display: flex; column-gap: 3.0em; margin-top: 5.0em; }
+    .next-previous section { flex: 1; text-align: left; }
+{% endblock STYLES %}
+
+{% block PAGETITLE %}{{ title }}{% endblock PAGETITLE %}
+
+{% block ADDITIONAL_HEADER %}
+    <p>{{ created.strftime("%B %d, %Y") }}</p>
+    <p>
+        Tags:
+        {% for tag in tags %}
+            <a href="/tags/{{ tag }}.html">{{ tag }}</a>
+        {% endfor %}
+    </p>
+{% endblock ADDITIONAL_HEADER %}
+
+{% block PAGECONTENT %}
+    {{ content }}
+    <div class="next-previous">
+        <section>
+            <h5>Previous Post</h5>
+            {% if previous_post %}
+                <a href="{{ previous_post[0] }}">{{ previous_post[1] }}</a>
+                <p>{{ previous_post[2] }}</p>
+            {% endif %}
+        </section>
+        <section>
+            <h5>Next Post</h5>
+            {% if next_post %}
+                <a href="{{ next_post[0] }}">{{ next_post[1] }}</a>
+                <p>{{ next_post[2] }}</p>
+            {% endif %}
+        </section>
+    </div>
+{% endblock PAGECONTENT %}

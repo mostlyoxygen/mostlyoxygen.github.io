@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block TITLE %}
+    Mostly Oxygen
+    {% if current_page > 0 %}
+        (Page {{ current_page + 1 }})
+    {% endif %}
+{% endblock TITLE %}
+
+{% block PAGETITLE %}
+    Mostly Oxygen
+    {% if current_page > 0 %}
+        (Page {{ current_page + 1 }})
+    {% endif %}
+{% endblock PAGETITLE %}
+
+{% block STYLES %}
+    .pagination { margin-top: 3.0em; text-align: center; }
+{% endblock STYLES %}
+
+{% block PAGECONTENT %}
+    {% for post in posts %}
+        <section>
+            <h2>{{ post["title"] }}</h2>
+            <p>{{ post["summary"] }}</p>
+            <p>
+                <a href="/posts/{{ post['filename'] }}.html">
+                    Read more
+                </a>
+            </p>
+            <p><small>
+                Tags:
+                {% for tag in post["tags"] %}
+                    <a href="/tags/{{ tag }}.html">{{ tag }}</a>
+                {% endfor %}
+            </small></p>
+        </section>
+    {% endfor %}
+    {% if total_pages > 1 %}
+        <nav class="pagination">
+            {% if current_page > 0 %}
+                {% if current_page == 1 %}
+                    <a href="/">&lt;&lt;</a>
+                {% else %}
+                    <a href="/indices/index{{ '{:03d}'.format(current_page - 1) }}.html">&lt;&lt;</a>
+                {% endif %}
+            {% endif %}
+            {% for i in range(total_pages) %}
+                {% if i == 0 %}
+                    <a href="/">1</a>
+                {% else %}
+                    <a href="/indices/index{{ '{:03d}'.format(i) }}.html">{{ i + 1 }}</a>
+                {% endif %}
+            {% endfor %}
+            {% if current_page < total_pages - 1 %}
+                <a href="/indices/index{{ '{:03d}'.format(current_page + 1) }}.html">&gt;&gt;</a>
+            {% endif %}
+        </nav>
+    {% endif %}
+{% endblock PAGECONTENT %}
